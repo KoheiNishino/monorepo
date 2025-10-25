@@ -7,5 +7,5 @@ export default defineConfig(
 	eslint.configs.recommended,
 	tseslint.configs.strictTypeChecked,
 	tseslint.configs.stylisticTypeChecked,
-	reactHooks.configs.flat.recommended
+	reactHooks.configs.flat.recommended,
 );
