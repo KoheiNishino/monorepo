@@ -3,11 +3,14 @@
 	"type": "module",
 	"scripts": {
 		"biome:write": "biome check --write",
-		"eslint": "npx eslint --flag unstable_native_nodejs_ts_config"
+		"eslint": "pnpm dlx eslint --flag unstable_native_nodejs_ts_config",
+		"eslint:fix": "pnpm eslint --fix"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.0",
+		"@eslint/compat": "1.4.0",
 		"@eslint/js": "9.38.0",
+		"@types/node": "24.9.1",
 		"eslint": "9.38.0",
 		"eslint-plugin-react-hooks": "7.0.0",
 		"typescript": "5.9.3",
