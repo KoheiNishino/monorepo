@@ -1,0 +1,9 @@
+# https://pnpm.io/settings
+
+engineStrict: true
+packages:
+  - 'apps/*'
+  - 'packages/*'
+minimumReleaseAge: 1440
+preferWorkspacePackages: true
+savePrefix: ''
