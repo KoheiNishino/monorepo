@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
 	reactCompiler: true,
-};
+} as const satisfies NextConfig;
 
 export default nextConfig;
