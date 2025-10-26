@@ -4,7 +4,8 @@
 	"scripts": {
 		"biome:write": "biome check --write",
 		"eslint": "pnpm dlx eslint --flag unstable_native_nodejs_ts_config",
-		"eslint:fix": "pnpm eslint --fix"
+		"eslint:fix": "pnpm eslint --fix",
+		"eslint:inspector": "pnpm dlx @eslint/config-inspector"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.0",
