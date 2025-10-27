@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
+import next from "@next/eslint-plugin-next";
 import { defineConfig, globalIgnores } from "eslint/config";
 import betterTailwindcss from "eslint-plugin-better-tailwindcss";
 import react from "eslint-plugin-react";
@@ -18,6 +19,7 @@ export default defineConfig(
 	react.configs.flat.recommended!,
 	react.configs.flat["jsx-runtime"]!,
 	reactHooks.configs.flat.recommended!,
+	next.configs["core-web-vitals"],
 	{
 		files: ["**/*.ts", "**/*.tsx"],
 		languageOptions: {
@@ -46,6 +48,9 @@ export default defineConfig(
 		settings: {
 			"better-tailwindcss": {
 				entryPoint: "globals.css",
+			},
+			next: {
+				rootDir: ["apps/saas"],
 			},
 		},
 	},
