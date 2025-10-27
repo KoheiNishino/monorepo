@@ -3,6 +3,7 @@ import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
 import { defineConfig, globalIgnores } from "eslint/config";
 import betterTailwindcss from "eslint-plugin-better-tailwindcss";
+import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import tseslint from "typescript-eslint";
 
@@ -14,6 +15,8 @@ export default defineConfig(
 	eslint.configs.recommended,
 	tseslint.configs.strictTypeChecked,
 	tseslint.configs.stylisticTypeChecked,
+	react.configs.flat.recommended!,
+	react.configs.flat["jsx-runtime"]!,
 	reactHooks.configs.flat.recommended!,
 	{
 		files: ["**/*.ts", "**/*.tsx"],
