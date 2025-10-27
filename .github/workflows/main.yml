@@ -1,0 +1,24 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          cache: "pnpm"
+          node-version-file: package.json
+      - name: Install Packages
+        run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm eslint
+      - name: Format
+        run: pnpm biome
+      - name: Type Check
+        run: pnpm tsc
