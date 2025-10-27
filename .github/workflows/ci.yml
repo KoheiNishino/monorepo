@@ -1,12 +1,12 @@
-name: main
+name: ci
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
 jobs:
-  main:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
