@@ -52,6 +52,9 @@ export default defineConfig(
 			next: {
 				rootDir: ["apps/saas"],
 			},
+			react: {
+				version: "detect",
+			},
 		},
 	},
 );
