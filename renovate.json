@@ -9,7 +9,7 @@
 	"packageRules": [
 		{
 			"matchManagers": ["pnpm"],
-			"rangeStrategy": "update-lockfile"
+			"rangeStrategy": "pin"
 		}
 	],
 	"vulnerabilityAlerts": {
