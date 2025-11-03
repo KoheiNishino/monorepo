@@ -4,7 +4,7 @@
 	"scripts": {
 		"biome": "biome check",
 		"biome:write": "pnpm biome --write",
-		"eslint": "pnpm dlx eslint --flag unstable_native_nodejs_ts_config",
+		"eslint": "eslint --flag unstable_native_nodejs_ts_config",
 		"eslint:fix": "pnpm eslint --fix",
 		"eslint:inspector": "pnpm dlx @eslint/config-inspector",
 		"tsc": "tsc --noEmit",
