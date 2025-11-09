@@ -9,7 +9,7 @@
 	"packageRules": [
 		{
 			"matchManagers": ["pnpm"],
-			"rangeStrategy": "pin"
+			"rangeStrategy": "bump"
 		}
 	],
 	"vulnerabilityAlerts": {
