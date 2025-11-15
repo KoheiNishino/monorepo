@@ -1,17 +1,13 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": ["config:recommended"],
+	"extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
 	"timezone": "Asia/Tokyo",
-	"schedule": ["before 7am every weekday"],
+	"schedule": ["after 1am and before 5am"],
 	"lockFileMaintenance": {
-		"enabled": true
+		"enabled": true,
+		"schedule": ["after 1am and before 5am"]
 	},
-	"packageRules": [
-		{
-			"matchManagers": ["pnpm"],
-			"rangeStrategy": "bump"
-		}
-	],
+	"rangeStrategy": "replace",
 	"vulnerabilityAlerts": {
 		"enabled": true,
 		"automerge": false
