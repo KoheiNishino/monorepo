@@ -5,7 +5,7 @@
 	"schedule": ["after 1am and before 5am"],
 	"lockFileMaintenance": {
 		"enabled": true,
-		"schedule": ["after 1am and before 5am"]
+		"schedule": ["before 3am"]
 	},
 	"rangeStrategy": "replace",
 	"vulnerabilityAlerts": {
