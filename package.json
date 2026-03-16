@@ -13,11 +13,11 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.3.5",
 		"@eslint/compat": "1.4.1",
-		"@eslint/js": "9.39.1",
+		"@eslint/js": "9.39.4",
 		"@next/eslint-plugin-next": "16.0.3",
 		"@tailwindcss/postcss": "4.1.16",
 		"@types/node": "24.10.1",
-		"eslint": "9.39.1",
+		"eslint": "9.39.4",
 		"eslint-plugin-better-tailwindcss": "3.7.10",
 		"eslint-plugin-react": "7.37.5",
 		"eslint-plugin-react-hooks": "7.0.1",
