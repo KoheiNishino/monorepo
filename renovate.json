@@ -11,5 +11,11 @@
 	"vulnerabilityAlerts": {
 		"enabled": true,
 		"automerge": false
-	}
+	},
+	"packageRules": [
+		{
+			"matchUpdateTypes": ["minor", "patch"],
+			"automerge": true
+		}
+	]
 }
