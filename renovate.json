@@ -7,6 +7,7 @@
 		"enabled": true,
 		"schedule": ["before 3am"]
 	},
+	"minimumReleaseAge": "25 hours",
 	"rangeStrategy": "replace",
 	"vulnerabilityAlerts": {
 		"enabled": true,
