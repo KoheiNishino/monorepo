@@ -4,6 +4,7 @@
 	"scripts": {
 		"biome": "biome check",
 		"biome:write": "pnpm biome --write",
+		"clean": "rm -fr node_modules && pnpm -r exec rm -fr node_modules",
 		"eslint": "eslint --flag unstable_native_nodejs_ts_config",
 		"eslint:fix": "pnpm eslint --fix",
 		"eslint:inspector": "pnpm dlx @eslint/config-inspector",
