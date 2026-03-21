@@ -8,13 +8,13 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
-		"@mimorisuzuko/yuuka": "1.0.7",
-		"react": "19.2.4",
-		"react-dom": "19.2.4"
+		"@mimorisuzuko/yuuka": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:"
 	},
 	"devDependencies": {
-		"@types/react": "19.1.6",
-		"@types/react-dom": "19.1.2",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
 		"@vitejs/plugin-react": "6.0.1",
 		"vite": "8.0.1"
 	}
