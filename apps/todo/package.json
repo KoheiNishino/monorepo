@@ -6,7 +6,7 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"tsc": "tsc --noEmit"
+		"tsc": "tsc"
 	},
 	"dependencies": {
 		"@mimorisuzuko/yuuka": "catalog:",
