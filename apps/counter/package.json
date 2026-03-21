@@ -3,8 +3,19 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"dev": "vp dev",
-		"build": "tsc -b ../../tsconfig.json && vp build",
-		"preview": "vp preview"
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"@mimorisuzuko/yuuka": "1.0.7",
+		"react": "19.2.4",
+		"react-dom": "19.2.4"
+	},
+	"devDependencies": {
+		"@types/react": "19.1.6",
+		"@types/react-dom": "19.1.2",
+		"@vitejs/plugin-react": "6.0.1",
+		"vite": "8.0.1"
 	}
 }
