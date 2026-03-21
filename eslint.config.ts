@@ -35,6 +35,7 @@ export default defineConfig(
 		rules: {
 			"@typescript-eslint/consistent-type-imports": "error",
 			"@typescript-eslint/no-import-type-side-effects": "error",
+			"@typescript-eslint/no-non-null-assertion": "off",
 			...betterTailwindcss.configs["recommended-error"]!.rules,
 			"better-tailwindcss/enforce-consistent-variable-syntax": "error",
 			"better-tailwindcss/enforce-consistent-important-position": "error",
@@ -44,6 +45,12 @@ export default defineConfig(
 			],
 			"better-tailwindcss/enforce-shorthand-classes": "error",
 			"better-tailwindcss/no-deprecated-classes": "error",
+			"react/no-unknown-property": [
+				"error",
+				{
+					ignore: ["css"],
+				},
+			],
 		},
 		settings: {
 			"better-tailwindcss": {

@@ -8,7 +8,7 @@
 		"eslint": "eslint --flag unstable_native_nodejs_ts_config",
 		"eslint:fix": "pnpm eslint --fix",
 		"eslint:inspector": "pnpm dlx @eslint/config-inspector",
-		"tsc": "tsc --noEmit",
+		"tsc": "pnpm -r tsc",
 		"apps:saas": "pnpm -F saas"
 	},
 	"devDependencies": {

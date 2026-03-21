@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-type FormFields = {
+interface FormFields {
 	name: string;
 	email: string;
 	message: string;
-};
+}
 
 const INITIAL_FORM = {
 	name: "",
@@ -16,7 +16,7 @@ const INITIAL_ERROR = {
 	name: "",
 	email: "",
 	message: "",
-} as const satisfies Record<keyof FormFields, string>;
+} satisfies Record<keyof FormFields, string>;
 
 export default function App() {
 	const [obj, setObj] = useState(INITIAL_FORM);
@@ -48,9 +48,9 @@ export default function App() {
 				<label htmlFor="name">name</label>
 				<input
 					id="name"
-					onChange={(e) =>
-						setObj((prev) => ({ ...prev, name: e.target.value }))
-					}
+					onChange={(e) => {
+						setObj((prev) => ({ ...prev, name: e.target.value }));
+					}}
 					value={obj.name}
 					type="text"
 				/>
@@ -62,9 +62,9 @@ export default function App() {
 				<label htmlFor="email">email</label>
 				<input
 					id="email"
-					onChange={(e) =>
-						setObj((prev) => ({ ...prev, email: e.target.value }))
-					}
+					onChange={(e) => {
+						setObj((prev) => ({ ...prev, email: e.target.value }));
+					}}
 					type="email"
 					value={obj.email}
 				/>
@@ -76,9 +76,9 @@ export default function App() {
 				<label htmlFor="message">message</label>
 				<textarea
 					id="message"
-					onChange={(e) =>
-						setObj((prev) => ({ ...prev, message: e.target.value }))
-					}
+					onChange={(e) => {
+						setObj((prev) => ({ ...prev, message: e.target.value }));
+					}}
 					value={obj.message}
 				></textarea>
 				{error.message !== "" ? (

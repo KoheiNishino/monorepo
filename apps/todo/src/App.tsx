@@ -1,10 +1,10 @@
 import { useEffect, useReducer, useState } from "react";
 
-type Todo = {
+interface Todo {
 	id: string;
 	title: string;
 	isDone: boolean;
-};
+}
 
 type Action =
 	| {
@@ -34,13 +34,11 @@ const reducer = (state: Todo[], action: Action) => {
 	} else if (action.type === "delete") {
 		const newTodos = state.filter((t) => t.id !== action.id);
 		return newTodos;
-	} else if (action.type === "check") {
+	} else {
 		const newTodos = state.map((t) =>
 			t.id === action.id ? { ...t, isDone: !t.isDone } : t,
 		);
 		return newTodos;
-	} else {
-		throw new Error("No action type is found");
 	}
 };
 
@@ -48,7 +46,7 @@ const useTodos = () => {
 	const [title, setTitle] = useState("");
 	const [todos, dispatch] = useReducer(
 		reducer,
-		JSON.parse(localStorage.getItem("todos") ?? "[]"),
+		JSON.parse(localStorage.getItem("todos") ?? "[]") as Todo[],
 	);
 
 	useEffect(() => {
@@ -62,9 +60,15 @@ const useTodos = () => {
 			dispatch({ type: "add", title });
 			setTitle("");
 		},
-		checkTodo: (id: string) => dispatch({ type: "check", id }),
-		deleteTodo: (id: string) => dispatch({ type: "delete", id }),
-		handleTitleChange: (newTitle: string) => setTitle(newTitle),
+		checkTodo: (id: string) => {
+			dispatch({ type: "check", id });
+		},
+		deleteTodo: (id: string) => {
+			dispatch({ type: "delete", id });
+		},
+		handleTitleChange: (newTitle: string) => {
+			setTitle(newTitle);
+		},
 	};
 };
 

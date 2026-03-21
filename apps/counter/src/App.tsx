@@ -19,10 +19,8 @@ const reducer = (count: number, action: Action) => {
 		return Math.min(count + 1, MAX_COUNT);
 	} else if (action.type === "down") {
 		return Math.max(count - 1, MIN_COUNT);
-	} else if (action.type === "reset") {
-		return MIN_COUNT;
 	} else {
-		throw new Error("No action type is found.");
+		return MIN_COUNT;
 	}
 };
 
@@ -35,17 +33,27 @@ export default function App() {
 			<div css={{ display: "flex", gap: 4 }}>
 				<button
 					disabled={count === MAX_COUNT}
-					onClick={() => dispatch({ type: "up" })}
+					onClick={() => {
+						dispatch({ type: "up" });
+					}}
 				>
 					Up
 				</button>
 				<button
 					disabled={count === MIN_COUNT}
-					onClick={() => dispatch({ type: "down" })}
+					onClick={() => {
+						dispatch({ type: "down" });
+					}}
 				>
 					Down
 				</button>
-				<button onClick={() => dispatch({ type: "reset" })}>Reset</button>
+				<button
+					onClick={() => {
+						dispatch({ type: "reset" });
+					}}
+				>
+					Reset
+				</button>
 			</div>
 		</div>
 	);
