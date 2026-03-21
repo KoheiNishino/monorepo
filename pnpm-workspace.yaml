@@ -7,6 +7,3 @@ packages:
 minimumReleaseAge: 1440
 preferWorkspacePackages: true
 savePrefix: ""
-minimumReleaseAgeExclude:
-  # Renovate security update: next@16.1.7
-  - next@16.1.7
