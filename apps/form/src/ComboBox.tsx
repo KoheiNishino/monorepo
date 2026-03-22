@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 interface Option {
 	label: string;
@@ -20,7 +20,14 @@ export function ComboBox({
 }: Props) {
 	const [label, setLabel] = useState("");
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [options, setOptions] = useState(initialOptions);
+
+	const filteredOptions = useMemo(() => {
+		return label !== ""
+			? initialOptions.filter(
+					({ label: l, value: v }) => l.includes(label) || v.includes(label),
+				)
+			: initialOptions;
+	}, [label, initialOptions]);
 
 	return (
 		<div>
@@ -29,15 +36,6 @@ export function ComboBox({
 				onChange={(e) => {
 					const inputLabel = e.target.value;
 					setLabel(inputLabel);
-					setOptions(
-						inputLabel !== ""
-							? initialOptions.filter(({ label, value }) => {
-									return (
-										label.includes(inputLabel) || value.includes(inputLabel)
-									);
-								})
-							: initialOptions,
-					);
 				}}
 				onClick={() => {
 					setMenuOpen(true);
@@ -48,9 +46,9 @@ export function ComboBox({
 			<input hidden id={id} readOnly value={value?.value ?? ""} />
 
 			{menuOpen ? (
-				options.length > 0 ? (
+				filteredOptions.length > 0 ? (
 					<ul css={{ border: "1px solid black", padding: 4 }}>
-						{options.map(({ label, value }) => (
+						{filteredOptions.map(({ label, value }) => (
 							<li
 								css={{
 									"&:hover": {
@@ -60,7 +58,6 @@ export function ComboBox({
 									cursor: "pointer",
 								}}
 								key={value}
-								// TODO: ここのonClickでコンソールエラー
 								onClick={() => {
 									const newSelectedOption = initialOptions.find(
 										(o) => o.value === value,
