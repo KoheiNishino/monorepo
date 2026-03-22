@@ -33,6 +33,9 @@ export function ComboBox({
 		<div>
 			<input
 				css={{ width: "100%" }}
+				onBlur={() => {
+					setMenuOpen(false);
+				}}
 				onChange={(e) => {
 					const inputLabel = e.target.value;
 					setLabel(inputLabel);
@@ -65,6 +68,9 @@ export function ComboBox({
 									onChange(newSelectedOption);
 									setLabel(newSelectedOption.label);
 									setMenuOpen(false);
+								}}
+								onMouseDown={(e) => {
+									e.preventDefault();
 								}}
 							>
 								{label}
