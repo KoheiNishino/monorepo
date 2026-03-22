@@ -8,7 +8,7 @@
 		"tsc": "tsc"
 	},
 	"dependencies": {
-		"next": "16.2.0",
+		"next": "16.2.1",
 		"react": "catalog:",
 		"react-dom": "catalog:"
 	},
