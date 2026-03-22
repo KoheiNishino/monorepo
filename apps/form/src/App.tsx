@@ -1,26 +1,32 @@
-import { useState } from "react";
+import { type ComponentProps, useState } from "react";
+import { ComboBox } from "./ComboBox";
 
 interface FormFields {
 	name: string;
 	email: string;
 	message: string;
+	option: ComponentProps<typeof ComboBox>["value"];
 }
 
 const INITIAL_FORM = {
 	name: "",
 	email: "",
 	message: "",
-} satisfies Record<keyof FormFields, string>;
+	option: null,
+} as const satisfies FormFields;
+
+type FormErrors = Record<keyof FormFields, string>;
 
 const INITIAL_ERROR = {
 	name: "",
 	email: "",
 	message: "",
-} satisfies Record<keyof FormFields, string>;
+	option: "",
+} as const satisfies FormErrors;
 
 export default function App() {
-	const [obj, setObj] = useState(INITIAL_FORM);
-	const [error, setError] = useState(INITIAL_ERROR);
+	const [obj, setObj] = useState<FormFields>(INITIAL_FORM);
+	const [error, setError] = useState<FormErrors>(INITIAL_ERROR);
 
 	return (
 		<form
@@ -28,7 +34,7 @@ export default function App() {
 			onSubmit={(e) => {
 				e.preventDefault();
 				const emptyKeys = (Object.keys(obj) as (keyof FormFields)[]).filter(
-					(k) => obj[k] === "",
+					(k) => !obj[k],
 				);
 
 				if (emptyKeys.length > 0) {
@@ -83,6 +89,23 @@ export default function App() {
 				></textarea>
 				{error.message !== "" ? (
 					<span css={{ color: "red" }}>{error.message}</span>
+				) : null}
+			</div>
+			<div css={{ display: "grid", gap: 8 }}>
+				<label htmlFor="option">option</label>
+				<ComboBox
+					id="option"
+					onChange={(option) => {
+						setObj((prev) => ({ ...prev, option: option }));
+					}}
+					options={[
+						{ label: "東京", value: "tokyo" },
+						{ label: "大阪", value: "osaka" },
+					]}
+					value={obj.option}
+				/>
+				{error.option !== "" ? (
+					<span css={{ color: "red" }}>{error.option}</span>
 				) : null}
 			</div>
 			<button type="submit">Submit</button>
