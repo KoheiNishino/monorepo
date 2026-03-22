@@ -18,35 +18,38 @@ export function ComboBox({
 	options: initialOptions,
 	value,
 }: Props) {
-	const [label, setLabel] = useState("");
+	const [inputValue, setInputValue] = useState("");
 	const [menuOpen, setMenuOpen] = useState(false);
 
 	const filteredOptions = useMemo(() => {
-		return label !== ""
+		return inputValue !== ""
 			? initialOptions.filter(
-					({ label: l, value: v }) => l.includes(label) || v.includes(label),
+					({ label: l, value: v }) =>
+						l.includes(inputValue) || v.includes(inputValue),
 				)
 			: initialOptions;
-	}, [label, initialOptions]);
+	}, [inputValue, initialOptions]);
+
+	const displayValue = menuOpen ? inputValue : (value?.label ?? "");
 
 	return (
 		<div>
 			<input
+				id={id}
 				css={{ width: "100%" }}
 				onBlur={() => {
 					setMenuOpen(false);
 				}}
 				onChange={(e) => {
 					const inputLabel = e.target.value;
-					setLabel(inputLabel);
+					setInputValue(inputLabel);
 				}}
 				onClick={() => {
 					setMenuOpen(true);
-					setLabel("");
+					setInputValue("");
 				}}
-				value={label}
+				value={displayValue}
 			/>
-			<input hidden id={id} readOnly value={value?.value ?? ""} />
 
 			{menuOpen ? (
 				filteredOptions.length > 0 ? (
@@ -66,7 +69,7 @@ export function ComboBox({
 										(o) => o.value === value,
 									)!;
 									onChange(newSelectedOption);
-									setLabel(newSelectedOption.label);
+									setInputValue(newSelectedOption.label);
 									setMenuOpen(false);
 								}}
 								onMouseDown={(e) => {

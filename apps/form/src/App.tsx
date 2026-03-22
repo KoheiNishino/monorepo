@@ -107,6 +107,16 @@ export default function App() {
 				{error.option !== "" ? (
 					<span css={{ color: "red" }}>{error.option}</span>
 				) : null}
+				<button
+					onClick={() => {
+						setObj((prev) => ({
+							...prev,
+							option: { label: "ホゲ", value: "hoge" },
+						}));
+					}}
+				>
+					ホゲに変えるボタン
+				</button>
 			</div>
 			<button type="submit">Submit</button>
 		</form>
