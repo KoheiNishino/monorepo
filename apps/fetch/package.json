@@ -1,0 +1,23 @@
+{
+	"name": "fetch",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"tsc": "tsc"
+	},
+	"dependencies": {
+		"@mimorisuzuko/yuuka": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"react-error-boundary": "6.1.1"
+	},
+	"devDependencies": {
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "6.0.1",
+		"vite": "8.0.1"
+	}
+}
