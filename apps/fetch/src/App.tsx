@@ -1,5 +1,6 @@
-import { Suspense, use } from "react";
+import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
+import useSWR from "swr";
 
 interface Todo {
 	userId: number;
@@ -8,23 +9,19 @@ interface Todo {
 	completed: boolean;
 }
 
-const cache = new Map<string, Promise<Todo[]>>();
-async function fetchTodos(url: string) {
-	if (!cache.has(url)) {
-		const res = await fetch(url);
-		if (!res.ok) {
-			throw Error("fetch is failed");
-		}
-		const todosJsonPromise = res.json() as Promise<Todo[]>;
-		cache.set(url, todosJsonPromise);
-		todosJsonPromise.catch(() => cache.delete(url));
-		return todosJsonPromise;
-	}
-	return cache.get(url)!;
-}
-
-function Todos({ todosPromise }: { todosPromise: Promise<Todo[]> }) {
-	const todos = use(todosPromise);
+function Todos() {
+	const { data: todos } = useSWR(
+		"https://jsonplaceholder.typicode.com/todos",
+		async (url) => {
+			const res = await fetch(url);
+			if (!res.ok) {
+				throw Error("fetch is failed");
+			}
+			const json = (await res.json()) as Promise<Todo[]>;
+			return json;
+		},
+		{ suspense: true },
+	);
 
 	return (
 		<div css={{ display: "grid", gap: 8 }}>
@@ -44,11 +41,7 @@ export default function App() {
 	return (
 		<ErrorBoundary fallback={<div>Something went wrong</div>}>
 			<Suspense fallback={<span>Loading...</span>}>
-				<Todos
-					todosPromise={fetchTodos(
-						"https://jsonplaceholder.typicode.com/todos",
-					)}
-				/>
+				<Todos />
 			</Suspense>
 		</ErrorBoundary>
 	);
