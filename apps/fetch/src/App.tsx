@@ -17,7 +17,7 @@ function Todos() {
 			if (!res.ok) {
 				throw Error("fetch is failed");
 			}
-			const json = (await res.json()) as Promise<Todo[]>;
+			const json = (await res.json()) as Todo[];
 			return json;
 		},
 		{ suspense: true },
