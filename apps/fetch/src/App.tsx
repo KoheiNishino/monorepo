@@ -17,6 +17,7 @@ async function fetchTodos(url: string) {
 		}
 		const todosJsonPromise = res.json() as Promise<Todo[]>;
 		cache.set(url, todosJsonPromise);
+		todosJsonPromise.catch(() => cache.delete(url));
 		return todosJsonPromise;
 	}
 	return cache.get(url)!;
