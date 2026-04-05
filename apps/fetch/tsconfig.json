@@ -5,5 +5,5 @@
 		"jsxImportSource": "@mimorisuzuko/yuuka",
 		"noEmit": true
 	},
-	"include": ["src"]
+	"include": ["scripts", "src"]
 }
