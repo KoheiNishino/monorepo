@@ -1,3 +1,4 @@
+import type { CSS } from "@mimorisuzuko/yuuka";
 import { useReducer } from "react";
 
 const MIN_COUNT = 0;
@@ -24,6 +25,12 @@ const reducer = (count: number, action: Action) => {
 	}
 };
 
+const resetStyle: CSS = {
+	border: "none",
+	margin: 0,
+	padding: 0,
+};
+
 export default function App() {
 	const [count, dispatch] = useReducer(reducer, MIN_COUNT);
 
@@ -48,11 +55,21 @@ export default function App() {
 					Down
 				</button>
 				<button
+					id="outer-button"
+					css={resetStyle}
 					onClick={() => {
-						dispatch({ type: "reset" });
+						console.log("outer-button clicked");
 					}}
 				>
-					Reset
+					<button
+						css={resetStyle}
+						onClick={(e) => {
+							e.stopPropagation();
+							dispatch({ type: "reset" });
+						}}
+					>
+						Reset
+					</button>
 				</button>
 			</div>
 		</div>
