@@ -12,11 +12,13 @@ async function fetchSequential() {
 
 async function fetchParallel() {
 	console.info(fetchParallel.name);
-	const reses = await Promise.all(ids.map((id) => fetch(`${apiUrl}/${id}`)));
-	const datas = await Promise.all(reses.map((res) => res.json()));
-	for (const data of datas) {
-		console.log(data);
-	}
+	await Promise.all(
+		ids.map(async (id) => {
+			const res = await fetch(`${apiUrl}/${id}`);
+			const data = (await res.json()) as unknown;
+			console.log(data);
+		}),
+	);
 }
 
 await fetchSequential();
