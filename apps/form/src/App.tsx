@@ -4,6 +4,7 @@ import { ComboBox } from "./ComboBox";
 interface FormFields {
 	name: string;
 	email: string;
+	age: number;
 	message: string;
 	option: ComponentProps<typeof ComboBox>["value"];
 }
@@ -11,6 +12,7 @@ interface FormFields {
 const INITIAL_FORM = {
 	name: "",
 	email: "",
+	age: 0,
 	message: "",
 	option: null,
 } as const satisfies FormFields;
@@ -20,9 +22,42 @@ type FormErrors = Record<keyof FormFields, string>;
 const INITIAL_ERROR = {
 	name: "",
 	email: "",
+	age: "",
 	message: "",
 	option: "",
 } as const satisfies FormErrors;
+
+function valid(formFields: FormFields) {
+	const { name, email, age } = formFields;
+
+	const errors: {
+		type: "name" | "email" | "age";
+		errorMessage: string;
+	}[] = [];
+
+	if (name.length === 0) {
+		errors.push({
+			type: "name",
+			errorMessage: "name error",
+		});
+	}
+
+	if (!email.includes("@")) {
+		errors.push({
+			type: "email",
+			errorMessage: "email error",
+		});
+	}
+
+	if (age < 18) {
+		errors.push({
+			type: "age",
+			errorMessage: "age error",
+		});
+	}
+
+	return errors;
+}
 
 export default function App() {
 	const [obj, setObj] = useState<FormFields>(INITIAL_FORM);
@@ -30,17 +65,16 @@ export default function App() {
 
 	return (
 		<form
+			noValidate
 			css={{ display: "grid", gap: 16 }}
 			onSubmit={(e) => {
 				e.preventDefault();
-				const emptyKeys = (Object.keys(obj) as (keyof FormFields)[]).filter(
-					(k) => !obj[k],
-				);
 
-				if (emptyKeys.length > 0) {
+				const errors = valid(obj);
+				if (errors.length !== 0) {
 					setError((prev) => ({
 						...prev,
-						...Object.fromEntries(emptyKeys.map((k) => [k, "必須項目です"])),
+						...Object.fromEntries(errors.map((k) => [k.type, k.errorMessage])),
 					}));
 					return;
 				}
@@ -76,6 +110,20 @@ export default function App() {
 				/>
 				{error.email !== "" ? (
 					<span css={{ color: "red" }}>{error.email}</span>
+				) : null}
+			</div>
+			<div css={{ display: "grid", gap: 8 }}>
+				<label htmlFor="email">age</label>
+				<input
+					id="age"
+					onChange={(e) => {
+						setObj((prev) => ({ ...prev, age: Number(e.target.value) }));
+					}}
+					type="number"
+					value={obj.age}
+				/>
+				{error.age !== "" ? (
+					<span css={{ color: "red" }}>{error.age}</span>
 				) : null}
 			</div>
 			<div css={{ display: "grid", gap: 8 }}>
