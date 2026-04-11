@@ -12,7 +12,8 @@
 	"dependencies": {
 		"@mimorisuzuko/yuuka": "catalog:",
 		"react": "catalog:",
-		"react-dom": "catalog:"
+		"react-dom": "catalog:",
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@types/react": "catalog:",

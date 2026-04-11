@@ -24,6 +24,9 @@ catalogs:
     react-dom:
       specifier: 19.2.4
       version: 19.2.4
+    zod:
+      specifier: 4.3.6
+      version: 4.3.6
 
 importers:
 
@@ -136,6 +139,9 @@ importers:
       react-dom:
         specifier: 'catalog:'
         version: 19.2.4(react@19.2.4)
+      zod:
+        specifier: 'catalog:'
+        version: 4.3.6
     devDependencies:
       '@types/react':
         specifier: 'catalog:'
