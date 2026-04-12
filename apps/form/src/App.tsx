@@ -1,13 +1,24 @@
 import { type ComponentProps, useState } from "react";
+import * as z from "zod";
 import { ComboBox } from "./ComboBox";
 
-interface FormFields {
-	name: string;
-	email: string;
-	age: number;
-	message: string;
-	option: ComponentProps<typeof ComboBox>["value"];
-}
+const schema = z.object({
+  name: z.string().min(1),
+  email: z.email(),
+  age: z.number().gte(18),
+  message: z.string().min(1),
+  option: z.custom<ComponentProps<typeof ComboBox>["value"]>(() => true),
+}).superRefine((data, ctx) => {
+  if (data.option === null) {
+    ctx.addIssue({
+      code: "custom",
+      path: ["option"],
+      message: "optionを選択してください",
+    });
+  }
+});
+type FormFields = z.infer<typeof schema>;
+type FormErrors = Record<keyof FormFields, string>;
 
 const INITIAL_FORM = {
 	name: "",
@@ -17,8 +28,6 @@ const INITIAL_FORM = {
 	option: null,
 } as const satisfies FormFields;
 
-type FormErrors = Record<keyof FormFields, string>;
-
 const INITIAL_ERROR = {
 	name: "",
 	email: "",
@@ -26,38 +35,6 @@ const INITIAL_ERROR = {
 	message: "",
 	option: "",
 } as const satisfies FormErrors;
-
-function valid(formFields: FormFields) {
-	const { name, email, age } = formFields;
-
-	const errors: {
-		type: "name" | "email" | "age";
-		errorMessage: string;
-	}[] = [];
-
-	if (name.length === 0) {
-		errors.push({
-			type: "name",
-			errorMessage: "name error",
-		});
-	}
-
-	if (!email.includes("@")) {
-		errors.push({
-			type: "email",
-			errorMessage: "email error",
-		});
-	}
-
-	if (age < 18) {
-		errors.push({
-			type: "age",
-			errorMessage: "age error",
-		});
-	}
-
-	return errors;
-}
 
 export default function App() {
 	const [obj, setObj] = useState<FormFields>(INITIAL_FORM);
@@ -69,13 +46,19 @@ export default function App() {
 			css={{ display: "grid", gap: 16 }}
 			onSubmit={(e) => {
 				e.preventDefault();
+				const result = schema.safeParse(obj);
 
-				const errors = valid(obj);
-				if (errors.length !== 0) {
-					setError((prev) => ({
-						...prev,
-						...Object.fromEntries(errors.map((k) => [k.type, k.errorMessage])),
-					}));
+				if (!result.success) {
+					const { fieldErrors } = z.flattenError(result.error);
+					setError({
+						...INITIAL_ERROR,
+						...Object.fromEntries(
+							Object.entries(fieldErrors).map(([key, value]) => [
+								key,
+								value[0] ?? "",
+							]),
+						),
+					});
 					return;
 				}
 
