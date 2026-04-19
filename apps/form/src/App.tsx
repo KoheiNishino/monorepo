@@ -2,21 +2,23 @@ import { type ComponentProps, useState } from "react";
 import * as z from "zod";
 import { ComboBox } from "./ComboBox";
 
-const schema = z.object({
-  name: z.string().min(1),
-  email: z.email(),
-  age: z.number().gte(18),
-  message: z.string().min(1),
-  option: z.custom<ComponentProps<typeof ComboBox>["value"]>(() => true),
-}).superRefine((data, ctx) => {
-  if (data.option === null) {
-    ctx.addIssue({
-      code: "custom",
-      path: ["option"],
-      message: "optionを選択してください",
-    });
-  }
-});
+const schema = z
+	.object({
+		name: z.string().min(1),
+		email: z.email(),
+		age: z.number().gte(18),
+		message: z.string().min(1),
+		option: z.custom<ComponentProps<typeof ComboBox>["value"]>(() => true),
+	})
+	.superRefine((data, ctx) => {
+		if (data.option === null) {
+			ctx.addIssue({
+				code: "custom",
+				path: ["option"],
+				message: "optionを選択してください",
+			});
+		}
+	});
 type FormFields = z.infer<typeof schema>;
 type FormErrors = Record<keyof FormFields, string>;
 
