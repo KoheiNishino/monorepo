@@ -13,6 +13,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
+		"@eslint-react/eslint-plugin": "4.2.3",
 		"@eslint/compat": "2.0.5",
 		"@eslint/js": "9.39.4",
 		"@next/eslint-plugin-next": "16.2.4",

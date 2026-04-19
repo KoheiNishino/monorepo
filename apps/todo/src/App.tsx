@@ -46,7 +46,8 @@ const useTodos = () => {
 	const [title, setTitle] = useState("");
 	const [todos, dispatch] = useReducer(
 		reducer,
-		JSON.parse(localStorage.getItem("todos") ?? "[]") as Todo[],
+		undefined,
+		() => JSON.parse(localStorage.getItem("todos") ?? "[]") as Todo[],
 	);
 
 	useEffect(() => {

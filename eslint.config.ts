@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { includeIgnoreFile } from "@eslint/compat";
 import eslint from "@eslint/js";
+import eslintReact from "@eslint-react/eslint-plugin";
 import next from "@next/eslint-plugin-next";
 import { defineConfig, globalIgnores } from "eslint/config";
 import betterTailwindcss from "eslint-plugin-better-tailwindcss";
@@ -16,6 +17,7 @@ export default defineConfig(
 	tseslint.configs.strictTypeChecked,
 	tseslint.configs.stylisticTypeChecked,
 	reactHooks.configs.flat.recommended!,
+	eslintReact.configs["recommended-typescript"],
 	next.configs["core-web-vitals"],
 	{
 		files: ["**/*.ts", "**/*.tsx"],
@@ -42,6 +44,20 @@ export default defineConfig(
 			],
 			"better-tailwindcss/enforce-shorthand-classes": "error",
 			"better-tailwindcss/no-deprecated-classes": "error",
+			// duplicate of eslint-plugin-react-hooks
+			"react-x/exhaustive-deps": "off",
+			"react-x/rules-of-hooks": "off",
+			"react-x/component-hook-factories": "off",
+			"react-x/error-boundaries": "off",
+			"react-x/immutability": "off",
+			"react-x/purity": "off",
+			"react-x/refs": "off",
+			"react-x/set-state-in-effect": "off",
+			"react-x/set-state-in-render": "off",
+			"react-x/no-nested-component-definitions": "off",
+			"react-x/no-nested-lazy-component-declarations": "off",
+			"react-x/unsupported-syntax": "off",
+			"react-x/use-memo": "off",
 		},
 		settings: {
 			"better-tailwindcss": {
