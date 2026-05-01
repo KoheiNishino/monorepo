@@ -14,7 +14,7 @@ catalog:
   react: "19.2.5"
   react-dom: "19.2.5"
   typescript: "6.0.3"
-  zod: 4.3.6
+  zod: 4.4.1
 trustPolicy: no-downgrade
 overrides:
   semver: "^7.7.4"
