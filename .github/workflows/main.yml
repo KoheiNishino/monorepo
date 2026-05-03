@@ -19,7 +19,7 @@ jobs:
           cache: "pnpm"
           node-version-file: package.json
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
       - name: Lint
         run: pnpm eslint
       - name: Format
