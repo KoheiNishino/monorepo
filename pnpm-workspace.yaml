@@ -1,9 +1,8 @@
-engineStrict: true
 packages:
   - "apps/*"
   - "packages/*"
-preferWorkspacePackages: true
-savePrefix: ""
+allowBuilds:
+  sharp: true
 catalog:
   "@mimorisuzuko/yuuka": "1.0.7"
   "@types/node": "24.12.2"
@@ -14,6 +13,9 @@ catalog:
   react-dom: "19.2.5"
   typescript: "6.0.3"
   zod: 4.4.1
-trustPolicy: no-downgrade
+engineStrict: true
 overrides:
   semver: "^7.7.4"
+preferWorkspacePackages: true
+savePrefix: ""
+trustPolicy: no-downgrade
