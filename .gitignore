@@ -189,3 +189,7 @@ sketch
 
 # Claude Code
 .claude/settings.local.json
+
+# Testing
+__screenshots__
+.vitest-attachments
