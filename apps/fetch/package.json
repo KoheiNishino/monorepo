@@ -13,7 +13,7 @@
 		"@mimorisuzuko/yuuka": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
-		"react-error-boundary": "6.1.1",
+		"react-error-boundary": "6.1.2",
 		"swr": "2.4.1"
 	},
 	"devDependencies": {
