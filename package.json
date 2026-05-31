@@ -11,7 +11,7 @@
 		"apps:saas": "pnpm -F saas"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.4.15",
+		"@biomejs/biome": "2.4.16",
 		"@eslint-react/eslint-plugin": "5.8.5",
 		"@eslint/compat": "2.1.0",
 		"@eslint/js": "10.0.1",
