@@ -6,7 +6,7 @@ allowBuilds:
 catalog:
   "@mimorisuzuko/yuuka": "1.0.7"
   "@types/node": "24.12.4"
-  "@types/react": "19.2.16"
+  "@types/react": "19.2.17"
   "@types/react-dom": "19.2.3"
   next: "16.2.7"
   react: "19.2.7"
